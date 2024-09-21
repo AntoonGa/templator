@@ -40,10 +40,12 @@ The project is built and packaged at each MR. The dev version can be pip install
 - Write your top-level modules docstring in markdown format
 - Write your class/method/function docstring in google format
 - Make sure to import that readme in each __init__.py docstring by doing:
-""".. include:: ./README.md
+    ```Python
+    """.. include:: ./README.md
 
-created by super-contributor the dd:mm:yyyy
-"""
+    created by super-contributor the dd:mm:yyyy
+    """
+    ```
 
 ## API auto-documentation
 API documentation is generated automatically by running, from the repo's root:
