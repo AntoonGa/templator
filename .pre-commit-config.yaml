@@ -35,8 +35,6 @@ repos:
     rev: v0.1.6
     hooks:
     -   id: ruff # run the linter
-        args: [ --fix ]
-        exclude: '^docs/'
+        args: [ --fix --config=pyproject.toml]
     -   id: ruff-format # run the formatter
         args: [ --config=pyproject.toml ]  # explicitly specify the configuration file if needed
-        exclude: '^docs/'  # Exclude docs folder and its content
