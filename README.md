@@ -4,33 +4,34 @@ This is a template for a Python package-style repo.
 ## Followed by a more in-depth description.
 - Contains a preset Python env with linter, formatter, pre-commit configs.
 - This repo follows a basic src structure, including pytests with coverage.
-.
-├── .git
-│   └── hooks
-│       └── post-commit
-├── docs
-│   └── index.html
-├── env
-│   └── ...  # environment-specific files and configurations
-├── src
-│   └── templator
-│       ├── README.md
-│       ├── module
-│       │   └── foo.py
-│       ├── settings
-│       │   └── settings.py
-│       └── ...  # other modules and files
-├── tests
-│   ├── module
-│   │   └── test_foo.py
-│   ├── settings
-│   │   └── test_settings.py
-│   └── ...  # other modules and files
-├── pyproject.toml
-├── uv.lock
-├── README.md
-└── .venv
-
+```
+   .
+   ├── .git
+   │   └── hooks
+   │       └── post-commit
+   ├── docs
+   │   └── index.html
+   ├── env
+   │   └── ...  # environment-specific files and configurations
+   ├── src
+   │   └── templator
+   │       ├── README.md
+   │       ├── module
+   │       │   └── foo.py
+   │       ├── settings
+   │       │   └── settings.py
+   │       └── ...  # other modules and files
+   ├── tests
+   │   ├── module
+   │   │   └── test_foo.py
+   │   ├── settings
+   │   │   └── test_settings.py
+   │   └── ...  # other modules and files
+   ├── pyproject.toml
+   ├── uv.lock
+   ├── README.md
+   └── .venv
+```
 - A usefull singleton settings dataclass is already setup.
 - Autodocumentation structure and post-commit hook (API-style documentation)
 
