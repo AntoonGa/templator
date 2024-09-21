@@ -115,7 +115,7 @@ exclude = [
     "buck-out",
     "build",
     "build_push_docker_ci_env.py",
-    "requirements.txt",
+    "env/",
     "data/",
     "dist",
     "docs/",

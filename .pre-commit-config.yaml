@@ -32,9 +32,9 @@ repos:
 
 # lint and format using ruff
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.6
+    rev: v0.6.7
     hooks:
     -   id: ruff # run the linter
-        args: [ --fix --config=pyproject.toml]
+        args: [--verbose, ]
     -   id: ruff-format # run the formatter
-        args: [ --config=pyproject.toml ]  # explicitly specify the configuration file if needed
+        args: [--verbose, ]  # explicitly specify the configuration file if needed
