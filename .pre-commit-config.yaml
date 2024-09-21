@@ -1,0 +1,42 @@
+# precommit hook: runs this pipeline_config when trying to commit (local only)
+# Checks for conventional commit style message
+repos:
+-   repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.1.0
+    hooks:
+    -   id: conventional-pre-commit
+        stages: [commit-msg]
+        args: []
+
+# emtpy notebook requested_slice
+- repo: https://github.com/kynan/nbstripout
+  rev: 0.7.1
+  hooks:
+    - id: nbstripout
+      exclude: "example.ipynb"
+
+# common precommit hooks
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: check-case-conflict
+        exclude: '^docs/' # Exclude docs folder and its content
+    -   id: check-docstring-first
+        exclude: '^docs/'
+    -   id: check-merge-conflict
+        exclude: '^docs/'
+    -   id: end-of-file-fixer
+        exclude: '^docs/'
+    -   id: trailing-whitespace
+        exclude: '^docs/'
+
+# lint and format using ruff
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.6
+    hooks:
+    -   id: ruff # run the linter
+        args: [ --fix ]
+        exclude: '^docs/'
+    -   id: ruff-format # run the formatter
+        args: [ --config=pyproject.toml ]  # explicitly specify the configuration file if needed
+        exclude: '^docs/'  # Exclude docs folder and its content

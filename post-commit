@@ -1,0 +1,10 @@
+#!/bin/sh
+# place this script in .git/hooks to enable it, make sure pre-commit it setup.
+echo "==============================*Post-commit*=============================="
+#echo "=======mypy eval...======="
+#mypy .
+echo "=======running pytests with coverage...======="
+pytest
+echo "=======Generate documentation...======"
+pdoc -d google src/templator --output-directory ./docs
+exit 0
