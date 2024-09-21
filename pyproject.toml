@@ -152,8 +152,6 @@ ignore = [
     "COM812", # conflict with black formatter
     "ISC001", # conflict with black formatter
     # TO SOLVE:
-    "PLR0913", # too many arguments in function definition (6 > 5)
-    "NPY002", # Replace legacy `np.random.rand` call with `np.random.Generator`
     "SIM108", # If else statement in single line.
     "RUF013", # prohibits usage of default | None union.
 ]
