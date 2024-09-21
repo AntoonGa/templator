@@ -8,6 +8,7 @@ __
 Description:
 TODO @username:
 """
+
 __version__ = "0.1.0"
 
 # You may want to perform packages imports here if you are using builders.
@@ -38,7 +39,7 @@ class LogFormatter(logging.Formatter):
     }
     RESET = "\033[0m"  # Reset color
 
-    def format(self, record: logging.LogRecord) -> str:  # noqa: A003
+    def format(self, record: logging.LogRecord) -> str:  # noqa: A003, RUF100
         """Standard log formatter with color support."""
         log_color = self.COLORS.get(record.levelname, self.RESET)
         message = super().format(record)
