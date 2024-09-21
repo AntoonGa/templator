@@ -10,13 +10,15 @@ TODO @username:
 """
 __version__ = "0.1.0"
 
-from templator.module.foo import foo
-from templator.settings.settings import Settings
+# You may want to perform packages imports here if you are using builders.
 
-__all__ = [
-    "foo",
-    "Settings",
-    ]
+# from templator.module.foo import foo  # noqa: ERA001
+# from templator.settings.settings import Settings  # noqa: ERA001
+
+# __all__ = [  # noqa: ERA001, RUF100
+#     "foo",  # noqa: ERA001
+#     "Settings",  # noqa: ERA001
+#     ] # noqa: ERA001, RUF100
 
 # Setting up logging options for the project
 import logging
@@ -25,6 +27,7 @@ import logging
 # ANSI escape codes for colors
 class LogFormatter(logging.Formatter):
     """Enable different color modes for different log levels."""
+
     # Color codes for different log levels
     COLORS = {  # noqa: RUF012
         "DEBUG": "\033[36m",  # Cyan.

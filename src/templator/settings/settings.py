@@ -18,15 +18,19 @@ I am using a dataclass for this example to avoid pydantic dependencies.
 
 Created by username the 3/11/2024.
 """
+import logging
 import os
 from dataclasses import dataclass
 from typing import Any
 
 from dotenv import load_dotenv
 
+logger = logging.getLogger("Settings")
+
 # default .env paths
 SECRETS_PATH = "src/templator/settings/secrets.env"
 PUBLIC_PATH = "src/templator/settings/public.env"
+
 
 class SingletonMeta(type):
     """Singleton metaclass
@@ -58,6 +62,7 @@ class Settings(metaclass=SingletonMeta):
         _secrets_dot_env_path (str): path to .env files
         _public_dot_env_path (str): path to .env files
     """
+
     # Use default paths if not set
     _secrets_dot_env_path: str = SECRETS_PATH
     _public_dot_env_path: str = PUBLIC_PATH
@@ -81,6 +86,12 @@ class Settings(metaclass=SingletonMeta):
         """Assign value to key if it is not None."""
         if value is not None:
             setattr(self, key, value)
+            msg = f"{key} set."
+            logger.info(msg)
+        else:
+            msg = f"{key} is None."
+            logger.info(msg)
+
 
 if __name__ == "__main__":
     config = Settings()
