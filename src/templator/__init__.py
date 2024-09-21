@@ -11,10 +11,14 @@ TODO @username:
 __version__ = "0.1.0"
 
 from templator.module.foo import foo
+from templator.settings.settings import Settings
 
-__all__ = ["foo"]
+__all__ = [
+    "foo",
+    "Settings",
+    ]
 
-
+# Setting up logging options for the project
 import logging
 
 

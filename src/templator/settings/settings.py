@@ -20,6 +20,7 @@ Created by username the 3/11/2024.
 """
 import os
 from dataclasses import dataclass
+from typing import Any
 
 from dotenv import load_dotenv
 
@@ -57,8 +58,10 @@ class Settings(metaclass=SingletonMeta):
         _secrets_dot_env_path (str): path to .env files
         _public_dot_env_path (str): path to .env files
     """
+    # Use default paths if not set
     _secrets_dot_env_path: str = SECRETS_PATH
     _public_dot_env_path: str = PUBLIC_PATH
+    # env variable storage
     PUBLIC_VAR_INT: int | None = None
     PUBLIC_VAR_STR: str | None = None
     PRIVATE_VAR_INT: int | None = None
@@ -66,14 +69,18 @@ class Settings(metaclass=SingletonMeta):
 
     def __post_init__(self) -> None:
         """After init, read the env variable and assign it to the object"""
-        # assign private and public variables to environment variables
         load_dotenv(self._secrets_dot_env_path)
         load_dotenv(self._public_dot_env_path)
 
-        self.PUBLIC_VAR_INT = os.getenv("PUBLIC_VAR_INT")
-        self.PUBLIC_VAR_STR = os.getenv("PUBLIC_VAR_STR")
-        self.PRIVATE_VAR_INT = os.getenv("PRIVATE_VAR_INT")
-        self.PRIVATE_VAR_STR = os.getenv("PRIVATE_VAR_STR")
+        self._set_if_notnone("PRIVATE_VAR_INT", os.getenv("PRIVATE_VAR_INT"))
+        self._set_if_notnone("PRIVATE_VAR_STR", os.getenv("PRIVATE_VAR_STR"))
+        self._set_if_notnone("PUBLIC_VAR_INT", os.getenv("PUBLIC_VAR_INT"))
+        self._set_if_notnone("PUBLIC_VAR_STR", os.getenv("PUBLIC_VAR_STR"))
+
+    def _set_if_notnone(self, key: str, value: Any) -> None:  # noqa: ANN401
+        """Assign value to key if it is not None."""
+        if value is not None:
+            setattr(self, key, value)
 
 if __name__ == "__main__":
     config = Settings()
