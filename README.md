@@ -1,6 +1,8 @@
 # Templator
 ## A very high-level description of the repos.
 This is a template for a Python package-style repo.
+Whenever creating a new package repo, just clone this one and copy paste it to your fresh repo.
+
 ## Followed by a more in-depth description.
 - Contains a preset Python env with linter, formatter, pre-commit configs.
 - This repo follows a basic src structure, including pytests with coverage.
