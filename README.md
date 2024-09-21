@@ -1,6 +1,39 @@
 # Templator
 ## A very high-level description of the repos.
+This is a template for a Python package-style repo.
 ## Followed by a more in-depth description.
+- Contains a preset Python env with linter, formatter, pre-commit configs.
+- This repo follows a basic src structure, including pytests with coverage.
+.
+├── .git
+│   └── hooks
+│       └── post-commit
+├── docs
+│   └── index.html
+├── env
+│   └── ...  # environment-specific files and configurations
+├── src
+│   └── templator
+│       ├── README.md
+│       ├── module
+│       │   └── foo.py
+│       ├── settings
+│       │   └── settings.py
+│       └── ...  # other modules and files
+├── tests
+│   ├── module
+│   │   └── test_foo.py
+│   ├── settings
+│   │   └── test_settings.py
+│   └── ...  # other modules and files
+├── pyproject.toml
+├── uv.lock
+├── README.md
+└── .venv
+
+- A usefull singleton settings dataclass is already setup.
+- Autodocumentation structure and post-commit hook (API-style documentation)
+
 ## How to run this repo:
 ### With a regular conda env
 1. Create and activate a barebone Python 3.12 environement
@@ -16,19 +49,19 @@
    ```
 3. Explore tutorials in the `tutorials` folder.
 ### With uv
-Follow these steps:
+1. Create a virtual env
    ```Python
    cd into the repo's root where your pyproject.toml is.
    >>> uv venv
    >>> uv sync
    ```
-Activate the .venv in your IDE.
-Following this, run uv add/remove to add/remove packages.
+2. Activate the .venv in your IDE.
+3. Following this, run uv add/remove to add/remove packages.
    ```Python
    >>> uv add numpy
    ```
 The lock file uv.lock, pyproject.toml should remain updated.
-To generate a requirements.txt file for non uv-users:
+4. To generate a requirements.txt file for non uv-users:
    ```Python
    >>> uv pip freeze > requirements.txt
    ```
