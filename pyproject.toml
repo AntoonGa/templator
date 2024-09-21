@@ -140,7 +140,6 @@ ignore = [
     "ANN101", # missing type annotation for `self` in method
     "ANN102", # missing type annotation for `cls` in classmethod
     "BLE", # ignore all blind exception issues
-    "D107", # missing docstring in `__init__`
     "D415", # first line should end with a period, question mark, or exclamation point
     "FBT", # this limits the use of default boolean arguments in function definitions
     "FIX", # force issue resolving (in todos)
