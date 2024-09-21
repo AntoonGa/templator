@@ -67,6 +67,9 @@ exclude_also = ["if self.debug:",
 #######################################
 ##            MYPY
 #######################################
+# NOTE: Mypy is slow, and raise a lot of false positives.
+# For this reason I suggest you not to use it in production and use pylance locally.
+# Nontheless this config is somewhat acceptable and nice to work with.
 [tool.mypy]
 python_version = "3.12"
 exclude = "tests/"
@@ -81,6 +84,8 @@ warn_return_any = false
 #######################################
 ##               RUFF
 #######################################
+# A decent Ruff configuration, fairly strict.
+# Note that I use a line length of 100 characters because we are not working with punchcards...
 [tool.ruff]
 line-length = 100
 # Exclude a variety of commonly ignored directories.
