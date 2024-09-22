@@ -10,19 +10,6 @@ repos:
     -   id: uv-export
         args: ["--all-extras", "--output-file=env/requirements-dev.txt"]
 
-- repo: https://github.com/astral-sh/uv-pre-commit
-  # uv version.
-  rev: 0.4.15
-  hooks:
-    # Compile requirements
-    - id: pip-compile
-      name: pip-compile requirements.in
-      args: [requirements.in, -o, requirements.txt]
-    - id: pip-compile
-      name: pip-compile requirements-dev.in
-      args: [requirements-dev.in, -o, requirements-dev.txt]
-      files: ^requirements-dev\.(in|txt)$
-
 # Checks for conventional commit style message
 -   repo: https://github.com/compilerla/conventional-pre-commit
     rev: v3.1.0
