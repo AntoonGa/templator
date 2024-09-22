@@ -1,0 +1,7 @@
+repos:
+  # emtpy notebook requested_slice
+  -   repo: https://github.com/kynan/nbstripout
+      rev: 0.7.1
+      hooks:
+      -   id: nbstripout
+          exclude: "example.ipynb"
