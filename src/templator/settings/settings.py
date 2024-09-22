@@ -18,6 +18,7 @@ I am using a dataclass for this example to avoid pydantic dependencies.
 
 Created by username the 3/11/2024.
 """
+
 import logging
 import os
 from dataclasses import dataclass

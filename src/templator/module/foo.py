@@ -2,6 +2,7 @@
 
 Description: A simple module that serves as an example.
 """
+
 import logging
 
 from templator import setup_logging

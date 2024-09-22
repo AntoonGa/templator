@@ -5,6 +5,5 @@ Description: Setup for the project
 TODO @username:
 """
 
-
 if __name__ == "__main__":
     pass

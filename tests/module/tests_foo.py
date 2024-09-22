@@ -24,8 +24,8 @@ def test_foo_values(test_data: list) -> None:
     returned = foo(test_data)
     for i in range(len(returned)):
         assert returned[i] == test_data[i]
-    
-    
+
+
 
 if __name__ == "__main__":
     pytest.main()
