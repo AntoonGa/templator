@@ -97,3 +97,4 @@ class Settings(metaclass=SingletonMeta):
 if __name__ == "__main__":
     config = Settings()
     var = config.PUBLIC_VAR_INT
+    var = config.PUBLIC_VAR_STR
