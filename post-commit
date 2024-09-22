@@ -3,7 +3,7 @@
 echo "==============================*Post-commit*=============================="
 #echo "=======mypy eval...======="
 #mypy .
-echo "=======running pytests with coverage...======="
+echo "=======Running pytests with coverage...======="
 pytest
 echo "=======Generate documentation...======"
 pdoc -d google src/templator --output-directory ./docs
