@@ -1,3 +1,3 @@
 # Templator
 ## A very high-level description of the repos.
-Contains templates for iterator, usefull for ML/DL.
+Contains templates for settings up mlflow in a fresh ML repo.
