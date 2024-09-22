@@ -1,3 +1,3 @@
 # Templator
 ## A very high-level description of the repos.
-Contains template for pandera dataframe validation handling.
+Contains templates for logging parameters and error handling.
