@@ -16,6 +16,8 @@ See: https://refactoring.guru/design-patterns/singleton/python/example
 Note: You may want to use a pydantic dataclass or basemodel to store the env variables.
 I am using a dataclass for this example to avoid pydantic dependencies.
 
+Note: Secrets attributes are public and may be displayed in the console.
+
 Created by username the 3/11/2024.
 """
 

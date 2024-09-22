@@ -3,9 +3,6 @@
 # echo "==============================*Post-commit*=============================="
 # echo "=======Generate documentation...======"
 # pdoc -d google src/templator --output-directory ./docs
-# echo "=======Updating dependencies...======"
-# uv export -o env/requirements.txt
-# uv export -o env/requirements-dev.txt --all-extras
 # echo "=======Mypy eval...======="
 # mypy .
 # echo "=======Running pytests with coverage...======="
