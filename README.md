@@ -12,5 +12,5 @@ Explore different branches available and copy paste as needed!
 - Subfolders:
    - Pydantic model templates
    - Custom validators and field constraints
-   - params class
-   - validation decorator
+   - params class 
+   - validation decorator (done)
