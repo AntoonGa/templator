@@ -180,5 +180,4 @@ cython_debug/
 .idea/
 
 # Forcepushes:
-!docs/*.html
-!docs/*.js
+!docs/**
