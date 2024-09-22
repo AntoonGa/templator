@@ -14,7 +14,9 @@ Whenever creating a new package repo, just clone this one and copy paste it to y
    ├── docs
    │   └── index.html
    ├── env
-   │   └── ...  # environment-specific files and configurations
+   |   ├── Dockerfile # CI python env
+   │   ├── requirements.txt # core packages reqs.
+   |   └── requirements-dev.txt # core+dev packages reqs.
    ├── src
    │   └── templator
    │       ├── README.md
@@ -31,8 +33,7 @@ Whenever creating a new package repo, just clone this one and copy paste it to y
    │   └── ...  # other modules and files
    ├── pyproject.toml
    ├── uv.lock
-   ├── README.md
-   └── .venv
+   └── README.md
 ```
 - A usefull singleton settings dataclass is already setup.
 - Autodocumentation structure and post-commit hook (API-style documentation)
@@ -52,25 +53,32 @@ Whenever creating a new package repo, just clone this one and copy paste it to y
    ```
 3. Explore tutorials in the `tutorials` folder.
 ### With uv
-1. Create a virtual env
+0. Make sure your pyproject.toml contains both dependencies and optional dependencies.
+
+1. Create a virtual env with all dependencies (core and optionals.)
    ```Python
    cd into the repo's root where your pyproject.toml is.
    >>> uv venv
-   >>> uv sync
+   >>> uv sync --all-extras
    ```
 2. Activate the .venv in your IDE.
 3. Following this, run uv add/remove to add/remove packages.
    ```Python
    >>> uv add numpy
+   >>> uv remove numpy
    ```
-The lock file uv.lock, pyproject.toml should remain updated.
+   The lock file uv.lock, pyproject.toml should remain updated.
+
 4. To generate a requirements.txt file for non uv-users:
    ```Python
-   >>> uv pip freeze > requirements.txt
+   >>> uv export -o requirements.txt # export core dependencies
+   >>> uv export -o requirements-dev.txt --all-extras # export optional dependencies
    ```
+   Note that this file should be generated during post-commit (see post-commit hook)
 
 ## How to import to your applications
-The project is built and packaged at each MR. The dev version can be pip installed manually.
+The project should be built and packaged at each MR in your CICD script.
+The dev version can be pip installed manually.
 
 1. Create and activate a barebone Python 3.12 environement if you do not have one already.
    ```python

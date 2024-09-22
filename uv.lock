@@ -439,22 +439,26 @@ name = "templator"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "python-dotenv" },
+]
+
+[package.optional-dependencies]
+dev = [
     { name = "ipython" },
     { name = "pdoc" },
     { name = "pre-commit" },
     { name = "pytest-cov" },
-    { name = "python-dotenv" },
     { name = "ruff" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "ipython", specifier = ">=8.10.0" },
-    { name = "pdoc", specifier = ">=14.0.0" },
-    { name = "pre-commit", specifier = ">=3.8.0" },
-    { name = "pytest-cov", specifier = ">=5.0.0" },
+    { name = "ipython", marker = "extra == 'dev'", specifier = ">=8.10.0" },
+    { name = "pdoc", marker = "extra == 'dev'", specifier = ">=14.0.0" },
+    { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=3.8.0" },
+    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=5.0.0" },
     { name = "python-dotenv", specifier = ">=1.0.1" },
-    { name = "ruff", specifier = ">=0.6.7" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.6.7" },
 ]
 
 [[package]]
