@@ -98,3 +98,4 @@ if __name__ == "__main__":
     config = Settings()
     var = config.PUBLIC_VAR_INT
     var = config.PUBLIC_VAR_STR
+    var = config.PRIVATE_VAR_INT
