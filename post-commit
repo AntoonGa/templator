@@ -7,7 +7,6 @@ echo "=======running pytests with coverage...======="
 pytest
 echo "=======Generate documentation...======"
 pdoc -d google src/templator --output-directory ./docs
-exit 0
 echo "=======Updating dependencies...======"
 uv export -o env/requirements.txt
 uv export -o env/requirements-dev.txt --all-extras
