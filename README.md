@@ -1,9 +1,9 @@
-# Templator
-## A very high-level description of the repos.
+# **Templator**
+# A very high-level description of the repos.
 This is a template for a Python package-style repo.
 Whenever creating a new package repo, just clone this one and copy paste it to your fresh repo.
 
-## Followed by a more in-depth description.
+# Followed by a more in-depth description.
 - Contains a preset Python env with linter, formatter, pre-commit configs.
 - This repo follows a basic src structure, including pytests with coverage.
 ```
@@ -38,7 +38,7 @@ Whenever creating a new package repo, just clone this one and copy paste it to y
 - A usefull singleton settings dataclass is already setup.
 - Autodocumentation structure and post-commit hook (API-style documentation)
 
-## How to run this repo:
+# How to run this repo:
 ### With a regular conda env
 1. Create and activate a barebone Python 3.12 environement
    ```Python
@@ -76,7 +76,7 @@ Whenever creating a new package repo, just clone this one and copy paste it to y
    ```
    Note that this file should be generated during post-commit (see post-commit hook)
 
-## How to import to your applications
+# How to import to your applications
 The project should be built and packaged at each MR in your CICD script.
 The dev version can be pip installed manually.
 
