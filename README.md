@@ -1,3 +1,3 @@
 # Templator
 ## A very high-level description of the repos.
-Contains templates for rest FASTapi
+Contains templates simple llm api requests.
