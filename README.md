@@ -1,6 +1,6 @@
 # Templator
-Each branch of this repo is a template for specific Python-focused repos.
-
+Each branch of this repo is a template.
+You will find in there template-repos, design patterns, profiling tools etc.
 Explore different branches available and copy paste as needed!
 
 ## package_gitlab
@@ -74,7 +74,7 @@ Lastly, some typical pre-commit/CI scripts ensuring good practices (linting, uni
    - Custom logger setup
    - Error-handling middleware
    - Structured logging for better monitoring
-   
+
 ## settings
 - Description:
    Snippets and templates for managing application settings using python-dotenv and pydantic.BaseSettings. This will ensure secure and flexible configuration of environment variables in different deployment environments.
