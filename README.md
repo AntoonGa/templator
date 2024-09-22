@@ -1,3 +1,7 @@
 # Templator
-## A very high-level description of the repos.
-Contains templates for memory, runtime profiling in Python
+Description: Some usefull profiling tools
+
+Subfolders:
+    - memory profiling
+    - runtime profiling
+    - w/ and w/o decorators
