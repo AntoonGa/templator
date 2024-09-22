@@ -23,7 +23,7 @@ Lastly, some typical pre-commit/CI scripts ensuring good practices (linting, uni
    - runtime profiling
    - w/ and w/o decorators
 
-## Validation
+## validation
 - Description:
    Reusable patterns and boilerplate code for Pydantic, a data validation and parsing library for Python. 
    You’ll find ready-to-use classes for data models, custom validators, and how to integrate Pydantic into larger applications (e.g., FastAPI).
