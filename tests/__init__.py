@@ -2,7 +2,6 @@
 
 .. include:: readme.md
 Description:
-TODO @username:
 """
 
 if __name__ == "__main__":

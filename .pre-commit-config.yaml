@@ -6,15 +6,9 @@ repos:
     rev: 0.4.15
     hooks:
     -   id: uv-export
-        name: uv-export
-        entry: uv-export --all-files
         args: ["--output-file=env/requirements.txt"]
-        language: system
     -   id: uv-export
-        name: uv-export
-        entry: uv-export --all-files
         args: ["--all-extras", "--output-file=env/requirements-dev.txt"]
-        language: system
 
 # Checks for conventional commit style message
 -   repo: https://github.com/compilerla/conventional-pre-commit
