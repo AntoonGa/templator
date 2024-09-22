@@ -31,5 +31,5 @@ def foo(arr: list) -> list:
 
 if __name__ == "__main__":
     # Always nice to add an entry point to the module
-    array = list(range(10))
+    array = list(range(100))
     foo(array)
