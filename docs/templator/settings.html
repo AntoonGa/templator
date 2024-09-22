@@ -26,6 +26,11 @@
             <input type="search" placeholder="Search..." role="searchbox" aria-label="search"
                    pattern=".+" required>
 
+            <h2>Contents</h2>
+            <ul>
+  <li><a href="#settings">Settings</a></li>
+</ul>
+
 
             <h2>Submodules</h2>
             <ul>
@@ -47,6 +52,24 @@
 <a href="./../templator.html">templator</a><wbr>.settings    </h1>
 
                         <div class="docstring"><p>File: __init__.py | Author: username | date: Sat Sep 21 2024</p>
+
+<h1 id="settings">Settings</h1>
+
+<p>Settings dataclass is used to parse .env files.
+At instantiation of Settings(), .env file variables are pushed to env variable in addition to being set as Settings attributes.</p>
+
+<p>You may then access env variables as attributes of the Settings() instance.</p>
+
+<p>You may use a public.env and secrets.env file.</p>
+
+<ul>
+<li>public.env: should be commited in version control.</li>
+<li>secrets.env: should never be commited in version control (in .gitignore).</li>
+</ul>
+
+<p>Settings object is a singleton.</p>
+
+<p>Settings dataclass has no validation procedure.</p>
 
 <p>Description: Setup for the project
 TODO @username:</p>
