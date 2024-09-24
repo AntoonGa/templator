@@ -1,5 +1,5 @@
 #!/bin/sh
-# place this script in .git/hooks to enable it, make sure pre-commit it setup.
+# place this script in .git/hooks to enable it, make sure pre-commit is setup.
 # echo "==============================*Post-commit*=============================="
 # echo "=======Generate documentation...======"
 # pdoc -d google src/templator --output-directory ./docs
