@@ -29,8 +29,18 @@ repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
+    -   id: check-ast
+    -   id: check-added-large-files
+    -   id: no-commit-to-branch
+        args: [--branch, main, --branch, master, --branch, develop, --branch, dev, --branch, stagging]
+    -   id: check-yaml
+        exclude: '^docs/'
+    -   id: check-json
+        exclude: '^docs/'
+    -   id: check-toml
+        exclude: '^docs/'
     -   id: check-case-conflict
-        exclude: '^docs/' # Exclude docs folder and its content
+        exclude: '^docs/'
     -   id: check-docstring-first
         exclude: '^docs/'
     -   id: check-merge-conflict

@@ -10,8 +10,7 @@ How to use:
 - in this class, add the env variable and assign it to the object
 - after loading in post init, Settings will read the env variable and assign it to the object
 
-Note: Settings inherits from SingletonMeta and is a singleton thus can only be instantiated once.
-See: https://refactoring.guru/design-patterns/singleton/python/example
+Note: Settings inherits from SingletonMeta.
 
 Note: You may want to use a pydantic dataclass or basemodel to store the env variables.
 I am using a dataclass for this example to avoid pydantic dependencies.
@@ -39,7 +38,6 @@ class SingletonMeta(type):
     """Singleton metaclass
 
     Class inheriting from this one will be a singleton.
-    Singletons can only be instantiated once.
     """
 
     _instances = {}  # noqa: RUF012
