@@ -6,6 +6,7 @@ set shell := ["powershell", "-c"]
 commit *msg:
     git add .
     git commit -m "{{msg}}"
+    git status
 
 status:
     git status
