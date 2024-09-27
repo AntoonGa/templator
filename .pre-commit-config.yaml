@@ -1,5 +1,13 @@
 # precommit hook: runs this pipeline_config when trying to commit.
 repos:
+    # Checks for conventional commit style message
+    -   repo: https://github.com/compilerla/conventional-pre-commit
+        rev: v3.4.0
+        hooks:
+        -   id: conventional-pre-commit
+            stages: [commit-msg]
+            args: []
+
     # Export requirements when lockfile, requirements.txt or pyproject.toml changes
     -   repo: https://github.com/astral-sh/uv-pre-commit
         # uv version.
@@ -17,14 +25,6 @@ repos:
         -   id: pip-compile
             args: [pyproject.toml, -o, env/requirements-dev.txt, --all-extras]
             files: ^(pyproject\.toml|uv\.lock|requirements-dev.txt\.txt)$
-
-    # Checks for conventional commit style message
-    -   repo: https://github.com/compilerla/conventional-pre-commit
-        rev: v3.4.0
-        hooks:
-        -   id: conventional-pre-commit
-            stages: [commit-msg]
-            args: []
 
     # emtpy notebook requested_slice
     -   repo: https://github.com/kynan/nbstripout
