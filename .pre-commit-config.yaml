@@ -1,70 +1,68 @@
 # precommit hook: runs this pipeline_config when trying to commit.
 repos:
+    # Export requirements when lockfile, requirements.txt or pyproject.toml changes
+    -   repo: https://github.com/astral-sh/uv-pre-commit
+        # uv version.
+        rev: 0.4.16
+        hooks:
+        # Export dependencies
+        -   id: pip-compile
+            args: [pyproject.toml, -o, env/requirements.txt]
+            files: ^(pyproject\.toml|uv\.lock|requirements\.txt)$
+        # Export optional dependencies for cicd
+        -   id: pip-compile
+            args: [pyproject.toml, -o, env/requirements-ci.txt, --extra, ci]
+            files: ^(pyproject\.toml|uv\.lock|requirements-ci.txt\.txt)$
+        # Export optional dependencies for development
+        -   id: pip-compile
+            args: [pyproject.toml, -o, env/requirements-dev.txt, --all-extras]
+            files: ^(pyproject\.toml|uv\.lock|requirements-dev.txt\.txt)$
 
-# Export requirements when lockfile, requirements.txt or pyproject.toml changes
-- repo: https://github.com/astral-sh/uv-pre-commit
-  # uv version.
-  rev: 0.4.16
-  hooks:
-    # Compile requirements
-    - id: pip-compile
-    # Export dependencies
-      args: [pyproject.toml, -o, env/requirements.txt]
-      files: ^(pyproject\.toml|uv\.lock|requirements\.txt)$
-    # Export optional dependencies for cicd
-    - id: pip-compile
-      args: [pyproject.toml, -o, env/requirements-ci.txt, --extra, ci]
-      files: ^(pyproject\.toml|uv\.lock|requirements-ci.txt\.txt)$
-    # Export optional dependencies for development
-    - id: pip-compile
-      args: [pyproject.toml, -o, env/requirements-dev.txt, --all-extras]
-      files: ^(pyproject\.toml|uv\.lock|requirements-dev.txt\.txt)$
+    # Checks for conventional commit style message
+    -   repo: https://github.com/compilerla/conventional-pre-commit
+        rev: v3.1.0
+        hooks:
+        -   id: conventional-pre-commit
+            stages: [commit-msg]
+            args: []
 
-# Checks for conventional commit style message
-- repo: https://github.com/compilerla/conventional-pre-commit
-  rev: v3.1.0
-  hooks:
-  -   id: conventional-pre-commit
-      stages: [commit-msg]
-      args: []
+    # emtpy notebook requested_slice
+    -   repo: https://github.com/kynan/nbstripout
+        rev: 0.7.1
+        hooks:
+        -   id: nbstripout
+            exclude: "example.ipynb"
 
-# emtpy notebook requested_slice
--   repo: https://github.com/kynan/nbstripout
-    rev: 0.7.1
-    hooks:
-    -   id: nbstripout
-        exclude: "example.ipynb"
+    # common precommit hooks
+    -   repo: https://github.com/pre-commit/pre-commit-hooks
+        rev: v4.4.0
+        hooks:
+        -   id: check-ast
+        -   id: check-added-large-files
+        -   id: no-commit-to-branch
+            args: [--branch, main, --branch, master, --branch, develop, --branch, dev, --branch, stagging]
+        -   id: check-yaml
+            exclude: '^docs/'
+        -   id: check-json
+            exclude: '^docs/'
+        -   id: check-toml
+            exclude: '^docs/'
+        -   id: check-case-conflict
+            exclude: '^docs/'
+        -   id: check-docstring-first
+            exclude: '^docs/'
+        -   id: check-merge-conflict
+            exclude: '^docs/'
+        -   id: end-of-file-fixer
+            exclude: '^docs/'
+        -   id: trailing-whitespace
+            exclude: '^docs/'
 
-# common precommit hooks
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
-    hooks:
-    -   id: check-ast
-    -   id: check-added-large-files
-    -   id: no-commit-to-branch
-        args: [--branch, main, --branch, master, --branch, develop, --branch, dev, --branch, stagging]
-    -   id: check-yaml
-        exclude: '^docs/'
-    -   id: check-json
-        exclude: '^docs/'
-    -   id: check-toml
-        exclude: '^docs/'
-    -   id: check-case-conflict
-        exclude: '^docs/'
-    -   id: check-docstring-first
-        exclude: '^docs/'
-    -   id: check-merge-conflict
-        exclude: '^docs/'
-    -   id: end-of-file-fixer
-        exclude: '^docs/'
-    -   id: trailing-whitespace
-        exclude: '^docs/'
-
-# lint and format using ruff
--   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.7
-    hooks:
-    -   id: ruff # run the linter
-        args: [ --fix, --config=pyproject.toml]
-    -   id: ruff-format # run the formatter
-        args: [ --config=pyproject.toml ]  # explicitly specify the configuration file if needed
+    # lint and format using ruff
+    -   repo: https://github.com/astral-sh/ruff-pre-commit
+        rev: v0.6.7
+        hooks:
+        -   id: ruff # run the linter
+            args: [ --fix, --config=pyproject.toml]
+        -   id: ruff-format # run the formatter
+            args: [ --config=pyproject.toml ]  # explicitly specify the configuration file if needed
