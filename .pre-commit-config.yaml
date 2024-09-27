@@ -1,4 +1,4 @@
-# precommit hook: runs this pipeline_config when trying to commit (local only)
+# precommit hook: runs this pipeline_config when trying to commit.
 repos:
 
 # Export requirements when lockfile, requirements.txt or pyproject.toml changes
