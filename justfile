@@ -4,9 +4,9 @@ set shell := ["powershell", "-c"]
 
 # Git actions
 commit *msg:
+    git status
     git add .
     git commit -m "{{msg}}"
-    git status
 
 status:
     git status
