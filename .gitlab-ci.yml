@@ -1,5 +1,5 @@
 # Standard gitlab ci scripting. This is a template, please copy and adapt it as needed.
-# I am not adding build and token refreshing stages as this will depend on your infra.
+# I am not adding build and token refreshing stages as this will depend on your infra...
 
 stages:
   - code_quality # Run code quality checks on every push/merge (NON BLOCKING on commits)
