@@ -21,12 +21,12 @@ repos:
       files: ^(pyproject\.toml|uv\.lock|requirements-dev.txt\.txt)$
 
 # Checks for conventional commit style message
--   repo: https://github.com/compilerla/conventional-pre-commit
-    rev: v3.1.0
-    hooks:
-    -   id: conventional-pre-commit
-        stages: [commit-msg]
-        args: []
+- repo: https://github.com/compilerla/conventional-pre-commit
+  rev: v3.1.0
+  hooks:
+  -   id: conventional-pre-commit
+      stages: [commit-msg]
+      args: []
 
 # emtpy notebook requested_slice
 -   repo: https://github.com/kynan/nbstripout
