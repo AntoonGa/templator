@@ -10,7 +10,7 @@ repos:
       args: [pyproject.toml, -o, env/requirements.txt]
       files: ^(pyproject\.toml|uv\.lock|requirements\.txt)$
     - id: pip-compile
-      args: [pyproject.toml, -o, env/requirements-ci.txt, --extra=ci]
+      args: [pyproject.toml, -o, env/requirements-ci.txt, --extra, ci]
       files: ^(pyproject\.toml|uv\.lock|requirements-ci.txt\.txt)$
     - id: pip-compile
       args: [pyproject.toml, -o, env/requirements-dev.txt, --all-extras]
