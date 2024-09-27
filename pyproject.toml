@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "templator"
-version = "0.1.0"
+version = "0.1.2"
 description = """This should be a short description of your package."""
 readme = "README.md"
 authors = [{name = "Username", email = "user@name.com"}]
