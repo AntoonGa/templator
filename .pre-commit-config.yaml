@@ -7,8 +7,14 @@ repos:
   hooks:
     # Compile requirements
     - id: pip-compile
-      args: [pyproject.toml, -o, requirements.txt]
+      args: [pyproject.toml, -o, env/requirements.txt]
       files: ^(pyproject\.toml|uv\.lock|requirements\.txt)$
+    - id: pip-compile
+      args: [pyproject.toml, -o, env/requirements-ci.txt, --extra=ci]
+      files: ^(pyproject\.toml|uv\.lock|requirements-ci.txt\.txt)$
+    - id: pip-compile
+      args: [pyproject.toml, -o, env/requirements-dev.txt, --all-extras]
+      files: ^(pyproject\.toml|uv\.lock|requirements-dev.txt\.txt)$
 
 # Checks for conventional commit style message
 -   repo: https://github.com/compilerla/conventional-pre-commit
