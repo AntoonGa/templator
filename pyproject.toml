@@ -15,12 +15,15 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = [
+ci = [
     "ruff>=0.6.7",
-    "ipython>=8.10.0",
     "pytest-cov>=5.0.0",
     "pdoc>=14.0.0",
     "pre-commit>=3.8.0",
+]
+dev = [
+    "ipykernel>=6.0.0",
+    "ipython>=8.10.0",
 ]
 
 
