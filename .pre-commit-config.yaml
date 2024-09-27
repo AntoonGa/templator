@@ -1,17 +1,21 @@
 # precommit hook: runs this pipeline_config when trying to commit (local only)
 repos:
-# export and generate requirements
+
+# Export requirements when lockfile, requirements.txt or pyproject.toml changes
 - repo: https://github.com/astral-sh/uv-pre-commit
   # uv version.
   rev: 0.4.16
   hooks:
     # Compile requirements
     - id: pip-compile
+    # Export dependencies
       args: [pyproject.toml, -o, env/requirements.txt]
       files: ^(pyproject\.toml|uv\.lock|requirements\.txt)$
+    # Export optional dependencies for cicd
     - id: pip-compile
       args: [pyproject.toml, -o, env/requirements-ci.txt, --extra, ci]
       files: ^(pyproject\.toml|uv\.lock|requirements-ci.txt\.txt)$
+    # Export optional dependencies for development
     - id: pip-compile
       args: [pyproject.toml, -o, env/requirements-dev.txt, --all-extras]
       files: ^(pyproject\.toml|uv\.lock|requirements-dev.txt\.txt)$
