@@ -1,5 +1,4 @@
 # type: ignore
-
 set shell := ["powershell", "-c"]
 
 # Git actions
@@ -26,3 +25,13 @@ req:
 env:
     uv venv
     uv sync --all-extras
+
+# singleshot actions
+terraform:
+    uv venv
+    uv sync --all-extras
+    uv pip compile pyproject.toml -o env/requirements.txt
+    uv pip compile pyproject.toml -o env/requirements-ci.txt --extra=ci
+    uv pip compile pyproject.toml -o env/requirements-dev.txt --all-extras
+    pre-commit clean
+    pre-commit install
