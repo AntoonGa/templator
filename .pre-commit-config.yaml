@@ -7,7 +7,8 @@ repos:
   hooks:
     # Compile requirements
     - id: pip-compile
-      args: [uv.lock, -o, requirements.txt]
+      args: [pyproject.toml, -o, requirements.txt]
+      files: ^(pyproject\.toml|uv\.lock|requirements\.txt)$
 
 # Checks for conventional commit style message
 -   repo: https://github.com/compilerla/conventional-pre-commit
