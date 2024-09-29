@@ -30,10 +30,10 @@ FROM python:3.12-slim
 WORKDIR /code
 
 # Copy the requirements files into the container. Both files are requiered.
-COPY requirements-dev.txt .
+COPY requirements-ci.txt .
 
 # Install any needed dependencies specified in requirements
-RUN pip install -r requirements-dev.txt
+RUN pip install -r requirements-ci.txt
 
 # Expose ports
 EXPOSE 8080
