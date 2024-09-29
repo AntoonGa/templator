@@ -1,15 +1,15 @@
 # type: ignore
 set shell := ["powershell", "-c"]
 
+# Status
+status:
+    git status
+
 # Stage all and commit
 commit *msg:
     git status
     git add .
     git commit -m "{{msg}}"
-
-# Status
-status:
-    git status
 
 # Pull remote
 pull:
