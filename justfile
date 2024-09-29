@@ -12,13 +12,13 @@ req:
 sync:
     uv sync --all-extras
 # Rebuild env and sync requirements
-env:
+venv:
     uv venv
-    uv sync --all-extras
 
 # singleshot actions: builds the env and exports the requirements
 terraform:
-    just env
+    just venv
+    just sync
     just req
     pre-commit clean
     pre-commit install
