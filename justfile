@@ -8,6 +8,9 @@ req:
     uv pip compile pyproject.toml -o env/requirements-ci.txt --extra=ci
     uv pip compile pyproject.toml -o env/requirements-dev.txt --all-extras
 
+# sync env
+sync:
+    uv sync --all-extras
 # Rebuild env and sync requirements
 env:
     uv venv
@@ -21,7 +24,7 @@ terraform:
     pre-commit install
 
 # git add and commit
-commit *msg:
+amit *msg:
     git status
     git add .
     git commit -m "{{msg}}"
