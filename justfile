@@ -1,23 +1,6 @@
 # type: ignore
 set shell := ["powershell", "-c"]
 
-# Status
-status:
-    git status
-
-# Stage all and commit
-commit *msg:
-    git status
-    git add .
-    git commit -m "{{msg}}"
-
-# Pull remote
-pull:
-    git pull
-
-# Push to remote
-push:
-    git push
 
 # Generate requirements
 req:
@@ -32,10 +15,25 @@ env:
 
 # singleshot actions: builds the env and exports the requirements
 terraform:
-    uv venv
-    uv sync --all-extras
-    uv pip compile pyproject.toml -o env/requirements.txt
-    uv pip compile pyproject.toml -o env/requirements-ci.txt --extra=ci
-    uv pip compile pyproject.toml -o env/requirements-dev.txt --all-extras
+    just env
+    just req
     pre-commit clean
     pre-commit install
+
+# git add and commit
+commit *msg:
+    git status
+    git add .
+    git commit -m "{{msg}}"
+
+# git push
+push:
+    git push
+
+# git pull
+pull:
+    git pull
+
+# git status
+status:
+    git status
