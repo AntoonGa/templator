@@ -67,11 +67,11 @@ pre-commit:
     pre-commit run --all-files
 
 # Run tests
-pytest:
+test:
     pytest
 
 # Run tests in quick mode
-pytestquick:
+quicktest:
     pytest -m "not slow"
 
 
