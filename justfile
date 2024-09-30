@@ -2,9 +2,9 @@
 set shell := ["powershell", "-c"]
 
 ############################
-# Default just command
+# Default Just command
 ############################
-# Display list of just scripts
+# Display list of Just scripts
 list:
     just --list
 
@@ -69,6 +69,10 @@ pre-commit:
 # Run tests
 pytest:
     pytest
+
+# Run tests in quick mode
+pytestquick:
+    pytest -m "not slow"
 
 
 #############################
