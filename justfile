@@ -1,8 +1,17 @@
 # type: ignore
 set shell := ["powershell", "-c"]
 
+############################
+# Default just command
+############################
+# Display list of just scripts
+list:
+    just --list
 
-# Generate requirements
+############################
+# Env handling with uv
+############################
+# Generate requirements with pip compile
 req:
     uv pip compile pyproject.toml -o env/requirements.txt
     uv pip compile pyproject.toml -o env/requirements-ci.txt --extra=ci
@@ -15,7 +24,7 @@ sync:
 venv:
     uv venv
 
-# singleshot actions: builds the env and exports the requirements
+# Builds the env and exports the requirements
 terraform:
     just venv
     just sync
@@ -23,20 +32,49 @@ terraform:
     pre-commit clean
     pre-commit install
 
-# git add and commit
-amit *msg:
+############################
+## Git actions
+############################
+# Git add all and commit with msg
+addmit *msg:
     git status
     git add .
     git commit -m "{{msg}}"
 
-# git push
+# Git push
 push:
     git push
 
-# git pull
+# Git pull
 pull:
     git pull
 
-# git status
+# Git status
 status:
     git status
+
+# Git branch and checkout
+branch *branch:
+    git branch {{branch}}
+    git checkout {{branch}}
+
+
+#############################
+## Runs
+#############################
+# Run pre-commit
+pre-commit:
+    pre-commit run --all-files
+
+# Run tests
+pytest:
+    pytest
+
+
+#############################
+## Tools
+#############################
+# Run Ruff linter and formatter
+ruff:
+    ruff check . --fix
+    ruff format

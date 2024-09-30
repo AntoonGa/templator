@@ -2,6 +2,16 @@
 requires      = ["setuptools>=61.0.0"]
 build-backend = "setuptools.build_meta"
 
+#######################################
+##            PROJECT INFO
+#######################################
+# Define minimum dependencies requirement in this pyproject.
+# Let pip/uv solve it.
+# For frozen requirements we use a requirements file.
+# Split those req files in different sections:
+# - Core dependencies: requirements.txt : minimum to run the project
+# - CI dependencies: requirements-ci.txt : required for CICD (e.g. pytest, pre-commit)
+# - Dev dependencies: requirements-dev.txt : required for development (e.g. jupyter, uv, etc.). Includes all of the above.
 [project]
 name = "templator"
 version = "0.1.2"
@@ -15,17 +25,18 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# Dependencies requiered for CICD pipelines
 ci = [
     "ruff>=0.6.7",
     "pytest-cov>=5.0.0",
     "pdoc>=14.0.0",
     "pre-commit>=3.8.0",
 ]
+# Dependencies required for development (Python notebooks, Ipython shell, etc)
 dev = [
     "ipykernel>=6.0.0",
     "ipython>=8.10.0",
 ]
-
 
 [project.urls]
 Homepage = "https://github.com/AntoonGa/templator"
@@ -34,7 +45,7 @@ Homepage = "https://github.com/AntoonGa/templator"
 #######################################
 ##            PYTESTS
 #######################################
-# pytest options, with coverage reports
+# Pytest options, with coverage reports
 [tool.pytest.ini_options]
 # markers can be used to ignore tests
 markers = "skip_this: skip this test"
@@ -43,7 +54,7 @@ norecursedirs =[".git",
                 "__pycache__"]
 addopts = "-v --durations=0 --cov=src tests --cov-report=term  --cov-report=html --cov-report=json --cov-report=xml"
 cache_dir = ".cache/cov/"
-# path to look for test files and standard tests file naming
+# Path to test files and standard tests file naming
 testpaths = "tests"
 python_files = "tests_*.py"
 
@@ -55,6 +66,7 @@ source = ["./src"]
 omit = ["tests/*",
         "__init__.py"]
 
+# Parsable output
 [tool.coverage.html]
 directory = ".cache/cov/report.html"
 
@@ -75,103 +87,80 @@ exclude_also = ["if self.debug:",
 #######################################
 ##            MYPY
 #######################################
-# NOTE: Mypy is slow, and raise a lot of false positives.
+# NOTE: Mypy is slow, raises a lot of false positives and is not that interesting anymore.
 # For this reason I suggest you not to use it in production and use pylance locally.
 # Nontheless this config is somewhat acceptable and nice to work with.
-[tool.mypy]
-python_version = "3.12"
-exclude = "tests/"
-# force type hint in every function definition
-disallow_untyped_defs = true
-# allows implicit optional when settings a default value.
-no_implicit_optional = false
-# prevent "any" returns and type def. This is very strict and could be set to false
-warn_return_any = false
+# [tool.mypy]
+# python_version = "3.12"
+# exclude = "tests/"
+# # Force type hint in every function definition
+# disallow_untyped_defs = true
+# # Allows implicit optional when settings a default value.
+# no_implicit_optional = false
+# # Prevent "any" returns and type def. This is very strict and could be set to false
+# warn_return_any = false
 
 
 #######################################
 ##               RUFF
 #######################################
 # A decent Ruff configuration, fairly strict.
-# Note that I use a line length of 100 characters because we are not working with punchcards...
 [tool.ruff]
+target-version = "py312"
 line-length = 100
+# Include a variety of common Python patterns. Include src and tests by default.
+include = [
+    "pyproject.toml",
+    "src/*.py",
+    "src/**/*.py",
+    "tests/*.py",
+    "tests/**/*.py"]
 # Exclude a variety of commonly ignored directories.
-exclude = [
-    "*.html",
-    "*.toml",
-    "*.ipynb",
-    "__pypackages__",
-    "_build",
-    ".bzr",
-    ".direnv",
-    ".eggs",
-    ".env",
-    ".git-rewrite",
-    ".git",
-    ".gitignore",
-    ".hg",
-    ".history/",
-    ".ipynb",
-    ".mypy_cache",
-    ".nox",
-    ".pants.d",
-    ".pytype",
-    ".ruff_cache",
-    ".svn",
-    ".tox",
-    ".venv",
-    "buck-out",
-    "build_push_docker_ci_env.py",
-    "build",
-    "data/",
-    "dist",
-    "docs/",
-    "env/",
-    "metadata.py",
-    "node_modules",
-    "public/*.*",
-    "sample.py",
-    "tests_*.py",
-    "venv",
-]
+exclude = []
 
-target-version = "py311"
+[tool.ruff.lint.per-file-ignores]
+# Less strict rules for tests files.
+"tests/*" = [
+    "D",    # checks for docstrings
+    "S101", # checks for asserts
+]
 
 [tool.ruff.lint]
 # All rules are listed here : https://docs.astral.sh/ruff/rules/#pyflakes-f
 select = ["ALL"]
 ignore = [
-    # PURPOSELY DISABLED:
+    # DISABLED: (generally accepted as bad rules)
     "ANN002", # missing type annotation for *arg
     "ANN003", # missing type annotation for **kwarg
     "ANN101", # missing type annotation for `self` in method
     "ANN102", # missing type annotation for `cls` in classmethod
-    "BLE", # ignore all blind exception issues
-    "D415", # first line should end with a period, question mark, or exclamation point
-    "FBT", # this limits the use of default boolean arguments in function definitions
-    "FIX", # force issue resolving (in todos)
-    "PTH", # proper use of PATH package
-    "RET504", # prevents assignment of a variable before its return. Ignore for understandable code
+    "FIX",    # force issue resolving (in todos)
     "SIM118", # this prevents the use of keys() in dictionaries. But forgets pd.Series have keys
-    "TD003", # force issue link in todos
-    "UP007", # use `X | Y` for type annotations: issues with the Optional module of type package
+    "TD003",  # force issue link in todos
+    "UP007",  # use `X | Y` for type annotations: issues with the Optional module of type package
     "COM812", # conflict with black formatter
     "ISC001", # conflict with black formatter
-    # TO SOLVE:
-    "SIM108", # If else statement in single line.
-    "RUF013", # prohibits usage of default | None union.
+    "SIM108", # if else statement in single line
+    # CONTROVERSIAL DISABLED: (discuss those with your tech lead)
+    "BLE",    # ignore all blind exception issues
+    "D415",   # first line should end with a period, question mark, or exclamation point
+    "FBT",    # this limits the use of default boolean arguments in function definitions
+    "PTH",    # proper use of PATH package
+    "RET504", # prevents assignment of a variable before its return. Ignore for understandable code
+    "RUF013", # prohibits usage of default | None union
+    # TO SOLVE DISABLED: (issues with the codebase, put rules here if you still want to commit)
 ]
+
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
 unfixable = []
 
-# Allow unused variables when underscore-prefixed.
+# Allow unused variables when underscore-prefixed (_temp_var).
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.ruff.lint.pycodestyle]
-max-line-length = 100
+max-line-length = 100 # discuss this with your tech lead
 
 [tool.ruff.lint.pydocstyle]
 # Use Google-style docstrings.
@@ -190,8 +179,10 @@ line-ending = "auto"
 
 
 #######################################
-##          PYRIGHT/PYLANCE
+##     PYRIGHT/PYLANCE FOR VSCODE
 #######################################
+# Note: your primary linter should be ruff, but vscode users enjoy some of the Pylance features.
+# This is a very loose Pylance config, compatible with Ruff.
 [tool.pyright]
 reportInvalidTypeForm = false
 reportOptionalSubscript = false
