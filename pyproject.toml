@@ -25,14 +25,12 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# Dependencies requiered for CICD pipelines
 ci = [
     "ruff>=0.6.7",
     "pytest-cov>=5.0.0",
     "pdoc>=14.0.0",
     "pre-commit>=3.8.0",
 ]
-# Dependencies required for development (Python notebooks, Ipython shell, etc)
 dev = [
     "ipykernel>=6.0.0",
     "ipython>=8.10.0",
@@ -189,3 +187,8 @@ reportOptionalSubscript = false
 reportOptionalMemberAccess = false
 reportIncompatibleMethodOverride = false
 typeCheckingMode = "basic"
+
+[tool.uv]
+dev-dependencies = [
+    "numpy>=2.1.1",
+]

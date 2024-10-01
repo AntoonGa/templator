@@ -1,39 +1,50 @@
 # type: ignore
 set shell := ["powershell", "-c"]
 
-############################
-# Default Just command
-############################
-# Display list of Just scripts
+# list all available just commands
+[group('helpers')]
 list:
     just --list
 
-############################
-# Env handling with uv
-############################
-# Generate requirements with pip compile
-# Add core dependencies
+# add package to core dependencies
+[group("env management")]
 add *pkg:
     uv add {{pkg}}
 
-# Remove core dependencies
+# remove package from core dependencies
+[group("env management")]
 remove *pkg:
     uv remove {{pkg}}
 
-# Sync env
+# add package to extras dependencies
+[group("env management")]
+addextras pkg extras:
+    uv add {{pkg}} --optional {{extras}}
+
+# remove package from extras dependencies
+[group("env management")]
+removeextras pkg extras:
+    uv remove {{pkg}} --optional {{extras}}
+
+# sync env with pyproject file, adding extras
+[group("env management")]
 sync:
     uv sync --all-extras
 
+# pip compile and output requirements (core, ci and dev)
+[group("env management")]
 req:
     uv pip compile pyproject.toml -o env/requirements.txt
     uv pip compile pyproject.toml -o env/requirements-ci.txt --extra=ci
     uv pip compile pyproject.toml -o env/requirements-dev.txt --all-extras
 
-# Rebuild env and sync requirements
+# create empty virtual env
+[group("env management")]
 venv:
     uv venv
 
-# Builds the env and exports the requirements
+# create virtual env, install dependencies, output requirements and lock file, install pre-commit
+[group("env management")]
 terraform:
     just venv
     just sync
@@ -41,53 +52,54 @@ terraform:
     pre-commit clean
     pre-commit install
 
-############################
-## Git actions
-############################
-# Git add all and commit with msg
+
+# git add all and commit with message
+[group("git actions")]
 addmit *msg:
     git status
     git add .
     git commit -m "{{msg}}"
 
-# Git push
+# git push
+[group("git actions")]
 push:
     git push
 
-# Git pull
+# git pull
+[group("git actions")]
 pull:
     git pull
 
-# Git status
+# git status
+[group("git actions")]
 status:
     git status
 
-# Git branch and checkout
+# git branch and checkout
+[group("git actions")]
 branch *branch:
     git branch {{branch}}
     git checkout {{branch}}
 
 
-#############################
-## Runs
-#############################
-# Run pre-commit
-pre-commit:
-    pre-commit run --all-files
-
-# Run tests
+# run tests
+[group("tests")]
 test:
     pytest
 
-# Run tests in quick mode
+# run tests, ignore tests marked with "slow"
+[group("tests")]
 quicktest:
     pytest -m "not slow"
 
 
-#############################
-## Tools
-#############################
-# Run Ruff linter and formatter
+# run precommit on all files
+[group("tools")]
+pre-commit:
+    pre-commit run --all-files
+
+# run ruff linter and formatter on all files
+[group("tools")]
 ruff:
     ruff check . --fix
     ruff format
