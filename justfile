@@ -12,14 +12,23 @@ list:
 # Env handling with uv
 ############################
 # Generate requirements with pip compile
+# Add core dependencies
+add *pkg:
+    uv add {{pkg}}
+
+# Remove core dependencies
+remove *pkg:
+    uv remove {{pkg}}
+
+# Sync env
+sync:
+    uv sync --all-extras
+
 req:
     uv pip compile pyproject.toml -o env/requirements.txt
     uv pip compile pyproject.toml -o env/requirements-ci.txt --extra=ci
     uv pip compile pyproject.toml -o env/requirements-dev.txt --all-extras
 
-# sync env
-sync:
-    uv sync --all-extras
 # Rebuild env and sync requirements
 venv:
     uv venv
