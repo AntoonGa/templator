@@ -18,12 +18,12 @@ remove *pkg:
 
 # add package to extras dependencies
 [group("env management")]
-addextras pkg extras:
+addx pkg extras:
     uv add {{pkg}} --optional {{extras}}
 
 # remove package from extras dependencies
 [group("env management")]
-removeextras pkg extras:
+removex pkg extras:
     uv remove {{pkg}} --optional {{extras}}
 
 # sync env with pyproject file, adding extras
