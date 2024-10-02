@@ -1,11 +1,18 @@
 # type: ignore
 set shell := ["powershell", "-c"]
 
+#################################
+## helpers
+#################################
 # list all available just commands
 [group('helpers')]
 list:
     just --list
 
+
+#################################
+## env management
+#################################
 # add package to core dependencies
 [group("env management")]
 add *pkg:
@@ -52,7 +59,9 @@ terraform:
     pre-commit clean
     pre-commit install
 
-
+#################################
+## git actions
+#################################
 # git add all and commit with message
 [group("git actions")]
 addmit *msg:
@@ -81,7 +90,13 @@ branch *branch:
     git branch {{branch}}
     git checkout {{branch}}
 
-
+# git checkout
+[group("git actions")]
+checkout *branch:
+    git checkout {{branch}}
+#################################
+## tests
+#################################
 # run tests
 [group("tests")]
 test:
@@ -92,7 +107,9 @@ test:
 quicktest:
     pytest -m "not slow"
 
-
+##################################
+## tools
+##################################
 # run precommit on all files
 [group("tools")]
 pre-commit:
