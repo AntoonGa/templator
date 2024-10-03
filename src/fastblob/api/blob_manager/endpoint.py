@@ -25,7 +25,7 @@ def upload(request: UploadRequest) -> dict:
         local-file name and file name inside the Blob
 
     Returns:
-        dict: A dictionary with the result of the process.
+        dict: Dictionary with the result of the process.
     """
     return upload_business(request).model_dump()
 
