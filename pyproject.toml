@@ -108,10 +108,6 @@ exclude_also = ["if self.debug:",
 [tool.ruff]
 target-version = "py312"
 line-length = 100
-# Include a variety of common Python patterns. Include src and tests by default.
-include = [
-    "pyproject.toml",
-    "*.py"]
 # Exclude a variety of commonly ignored directories.
 exclude = []
 
