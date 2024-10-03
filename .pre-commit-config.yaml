@@ -63,5 +63,6 @@ repos:
         rev: v0.6.7
         hooks:
         -   id: ruff # run the linter
-            args: [ --fix]
+            args: [ --fix, --all-files]
         -   id: ruff-format # run the formatter
+            args: [--all-files]
