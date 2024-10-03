@@ -50,13 +50,12 @@ req:
 venv:
     uv venv
 
-# create virtual env, install dependencies, output requirements and lock file, install pre-commit
+# create virtual env, install dependencies, output requirements and lock file, install fresh pre-commit
 [group("env management")]
 terraform:
     just venv
     just sync
     just req
-
 
 #################################
 ## git actions
