@@ -31,7 +31,7 @@ def upload(request: UploadRequest) -> dict:
 
 
 @router.get("/download")
-def download(request) -> Response:
+def download(request: DownloadRequest) -> Response:
     """Endpoint to handle the 'download' API
 
     Downloading a file from the Blob to your local system.
