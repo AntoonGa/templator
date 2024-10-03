@@ -37,7 +37,7 @@ def download(request: DownloadRequest) -> Response:
     Downloading a file from the Blob to your local system.
 
     Args:
-        request (DownloadRequest): Request parameters specifying the azeazeazeazezzzzzzzzzzzzzzzzzzzzzzzzzzzzzazeazezzzzzzzzzzzzz
+        request (DownloadRequest): Request parameters specifying the azeazeazeazezzzzzzzzzzzzzzzzzzzzzzazeazezzzzzzzzzzzzz
         file-name inside the Blob and the output-file name
         in your local system.
 
