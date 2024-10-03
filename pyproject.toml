@@ -39,7 +39,7 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/AntoonGa/templator"
+Homepage = "https://github.com/your/url"
 
 
 #######################################
