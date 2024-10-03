@@ -111,7 +111,10 @@ line-length = 100
 # Include a variety of common Python patterns. Include src and tests by default.
 include = [
     "pyproject.toml",
-    "*.py"]
+    "src/*.py",
+    "src/**/*.py",
+    "tests/*.py",
+    "tests/**/*.py"]
 # Exclude a variety of commonly ignored directories.
 exclude = []
 
