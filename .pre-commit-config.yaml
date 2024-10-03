@@ -63,6 +63,5 @@ repos:
         rev: v0.6.7
         hooks:
         -   id: ruff # run the linter
-            args: [ --fix, --config=pyproject.toml]
+            args: [ --fix]
         -   id: ruff-format # run the formatter
-            args: [ --config=pyproject.toml ]  # explicitly specify the configuration file if needed
