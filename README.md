@@ -1,44 +1,65 @@
-# **Templator**
-# A very high-level description of the repos.
-This is a template for a Python package-style repo.
-Whenever creating a new package repo, just clone this one and copy paste it to your fresh repo.
+# **RESTfull API & Blob Storage (Azure)**
+# What is this ?
+This repo describes how to interact with files inside a Blob using FASTAPI.
 
-# Followed by a more in-depth description.
-- Contains a preset Python env with linter, formatter, pre-commit configs.
-- This repo follows a basic src structure, including pytests with coverage.
-```
-   .
-   ├── .git
-   │   └── hooks
-   │       └── post-commit
-   ├── docs
-   │   └── index.html
-   ├── env
-   |   ├── Dockerfile # CI python env
-   │   ├── requirements.txt # core packages reqs.
-   |   └── requirements-dev.txt # core+dev packages reqs.
-   ├── src
-   │   └── templator
-   │       ├── README.md
-   │       ├── module
-   │       │   └── foo.py
-   │       ├── settings
-   │       │   └── settings.py
-   │       └── ...  # other modules and files
-   ├── tests
-   │   ├── module
-   │   │   └── test_foo.py
-   │   ├── settings
-   │   │   └── test_settings.py
-   │   └── ...  # other modules and files
-   ├── pyproject.toml
-   ├── uv.lock
-   └── README.md
-```
-- A usefull singleton settings dataclass is already setup.
-- Autodocumentation structure and post-commit hook (API-style documentation)
+- An Azure Blob contains an input file
+- A dockerized API (REST) allows to read this file and process it
+- The container then write the output onto the blob
+
+- You may also upload, download and list files to/from the Blob
+
+### TODO:
+- Data handling during upload is done wrong. I send strings to the API, which are then encoded back to bytes. Find a way to send raw bytes using FASTAPI.
+- Exception and logging is not properly done (local vs docker API!!!)
 
 # How to run this repo:
+### Locally
+1. Install the environement (see below)
+2. Mount the Blob storage Docker container, in a terminal (WSL if on Windows), from the repo's root
+   ```cmd
+   >>> cd docker
+   >>> docker compose up
+   ```
+3. Build the API Docker image and start the container
+   ```cmd
+   >>> docker buildx build . -t fastapi
+   >>> docker run -p 8000:8000 fastapi
+   ```
+4. With the Blob and API up you may now launch the API requests
+   Checkout the ```user_entry_point.py``` tutorial which shows you how to
+   use each endpoint!
+
+
+- Note (delete files from the Blob):
+
+   If your files are large, you may want to delete data contained in your compose Blob storage as the volumes are persistent.
+   ```cmd
+   >>> docker compose down
+   >>> docker volume ls
+   ```
+   This will show you all volumes mounted, checkout if a volume named ~"azurite data" exists. In which case do
+   ```cmd
+   >>> docker volume rm azurite_data
+   ```
+
+- Note (WSL or not ?):
+
+   If your local system is not Windows, then you do not need to redirect IPs from your OS to WSL2.
+   In this case every mention of an IP should be changed to your local host ```0.0.0.0```
+   Change this in your Azure connection string ```.env``` file.
+   And do the same in the ```user_entry_point.py``` tutorial url variable.
+### Cloud
+... In construction ...
+
+Jist of it:
+- create ```src/fastblob/settings/secrets.env``` file containing your Azure Blob Storage connection strings
+- build and deploy the API Docker image
+- enable Blob storage acces to your deployed API
+- enable API access to your local computer on your Azure account
+- make requests as you would locally
+
+
+# Install the environement
 ### With a regular conda env
 1. Create and activate a barebone Python 3.12 environement
    ```Python
@@ -48,7 +69,7 @@ Whenever creating a new package repo, just clone this one and copy paste it to y
    ```
 2. Install the environement on Python 3.12
    ```Python
-   pip install -r requirements-ci.txt
+   pip install -r requirements.txt
    python -m pip install -e .
    ```
 3. Explore tutorials in the `tutorials` folder.
@@ -57,7 +78,7 @@ Whenever creating a new package repo, just clone this one and copy paste it to y
 
 1. Create a virtual env with all dependencies (core and optionals.)
    ```Python
-   cd into the repo's root where your pyproject.toml is.
+   cd into the repos root where your pyproject.toml is.
    >>> uv venv
    >>> uv sync --all-extras
    ```
@@ -76,22 +97,6 @@ Whenever creating a new package repo, just clone this one and copy paste it to y
    ```
    Note that this file should be generated during post-commit (see post-commit hook)
 
-# How to import to your applications
-The project should be built and packaged at each MR in your CICD script.
-The dev version can be pip installed manually.
-
-1. Create and activate a barebone Python 3.12 environement if you do not have one already.
-   ```python
-   # Example with conda
-   conda create -n MyEnv python=3.12
-   conda activate MyEnv
-   ```
-
-2. Install as a package to your env
-   ```python
-   pip install this_package
-   ```
-
 # Contributing to this projet:
 ## General guidelines
 - Install pre-commit and use it with the pre-commit-config.yaml file provided.
@@ -107,16 +112,3 @@ The dev version can be pip installed manually.
     created by super-contributor the dd:mm:yyyy
     """
     ```
-
-## API auto-documentation
-API documentation is generated automatically by running, from the repo's root:
-   ```Python
-   pdoc -d google src/templator --output-directory ./docs
-   ```
-Open the ./docs/index.html file in your browser after running this command in a terminal.
-This tool requires a fair amount of practice to perform decently... In particular you should watch your imports, docstring documentation and top-of-modules documentation.
-Best practice:
-   - Every package (folders with an init.py files) should have a readme.
-   - Every init.py docstring should be in markdown format.
-   - Every package init.py should include the readme as explained above.
-   - Every class, method and function should have a google docstring.

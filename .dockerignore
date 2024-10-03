@@ -1,0 +1,19 @@
+# Standard folders
+/.cache
+/.history
+/.venv
+/docs
+/tests
+# Standard files
+*.md
+*.txt
+*.yml
+*.yaml
+*.log
+.coverage
+# Repo-specific files
+justfile
+.gitignore
+main.py
+user_entry_point.py
+uv.lock

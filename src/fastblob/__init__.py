@@ -1,27 +1,15 @@
-"""File: __init__.py | Author: username | date: Sat Sep 21 2024
+"""File: __init__.py | Author: username | date: Sat Oct 1 2024
 
 __
 .. include:: ../../README.md
 __
 .. include:: ./README.md
 __
-Description:
-TODO @username:
+Description: Setup for the project
 """
 
 __version__ = "0.1.0"
 
-# You may want to perform packages imports here if you are using builders.
-
-# from templator.module.foo import foo  # noqa: ERA001
-# from templator.settings.settings import Settings  # noqa: ERA001
-
-# __all__ = [  # noqa: ERA001, RUF100
-#     "foo",  # noqa: ERA001
-#     "Settings",  # noqa: ERA001
-#     ] # noqa: ERA001, RUF100
-
-# Setting up logging options for the project
 import logging
 
 

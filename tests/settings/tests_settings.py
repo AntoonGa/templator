@@ -7,7 +7,7 @@ TODO @username:
 
 import pytest
 
-from templator.settings.settings import Settings
+from fastblob.settings.settings import Settings
 
 SECRETS_DOT_ENV_PATH = r"tests\test_data\test_secret.env"
 PUBLIC_DOT_ENV_PATH = r"tests\test_data\test_public.env"

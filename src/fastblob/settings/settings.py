@@ -23,15 +23,14 @@ Created by username the 3/11/2024.
 import logging
 import os
 from dataclasses import dataclass
-from typing import Any
 
 from dotenv import load_dotenv
 
 logger = logging.getLogger("Settings")
 
 # default .env paths
-SECRETS_PATH = "src/templator/settings/secrets.env"
-PUBLIC_PATH = "src/templator/settings/public.env"
+SECRETS_PATH = "src/fastblob/settings/secrets.env"
+PUBLIC_PATH = "src/fastblob/settings/public.env"
 
 
 class SingletonMeta(type):
@@ -68,35 +67,18 @@ class Settings(metaclass=SingletonMeta):
     _secrets_dot_env_path: str = SECRETS_PATH
     _public_dot_env_path: str = PUBLIC_PATH
     # env variable storage
-    PUBLIC_VAR_INT: int | None = None
-    PUBLIC_VAR_STR: str | None = None
-    PRIVATE_VAR_INT: int | None = None
-    PRIVATE_VAR_STR: str | None = None
+    AZURE_STORAGE_CONNECTION_STRING: str = ""
+    AZURE_STORAGE_CONTAINER_NAME: str = ""
 
     def __post_init__(self) -> None:
         """After init, read the env variable and assign it to the object"""
-        load_dotenv(self._secrets_dot_env_path)
         load_dotenv(self._public_dot_env_path)
+        load_dotenv(self._secrets_dot_env_path)  #  public settings are overwritten by secrets
 
-        self._set_if_notnone("PRIVATE_VAR_INT", os.getenv("PRIVATE_VAR_INT"))
-        self._set_if_notnone("PRIVATE_VAR_STR", os.getenv("PRIVATE_VAR_STR"))
-        self._set_if_notnone("PUBLIC_VAR_INT", os.getenv("PUBLIC_VAR_INT"))
-        self._set_if_notnone("PUBLIC_VAR_STR", os.getenv("PUBLIC_VAR_STR"))
-
-    def _set_if_notnone(self, key: str, value: Any) -> None:  # noqa: ANN401
-        """Assign value to key if it is not None."""
-        if value is not None:
-            setattr(self, key, value)
-            msg = f"{key} set."
-            logger.info(msg)
-        else:
-            msg = f"{key} is None."
-            logger.info(msg)
+        self.AZURE_STORAGE_CONTAINER_NAME = os.getenv("AZURE_STORAGE_CONTAINER_NAME")
+        self.AZURE_STORAGE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
 
 
 if __name__ == "__main__":
     config = Settings()
-    var = config.PUBLIC_VAR_INT
-    var = config.PUBLIC_VAR_STR
-    var = config.PRIVATE_VAR_INT
     print(config)  # noqa: T201

@@ -13,22 +13,24 @@ build-backend = "setuptools.build_meta"
 # - CI dependencies: requirements-ci.txt : required for CICD (e.g. pytest, pre-commit)
 # - Dev dependencies: requirements-dev.txt : required for development (e.g. jupyter, uv, etc.). Includes all of the above.
 [project]
-name = "templator"
+name = "fastblob"
 version = "0.1.2"
-description = """This should be a short description of your package."""
+description ="""Read/Writing from a blob store with a dockerized REST API."""
 readme = "README.md"
 authors = [{name = "Username", email = "user@name.com"}]
 maintainers = [{name = "Username", email = "user@name.com"}]
 requires-python = ">=3.12, <3.13"
 dependencies = [
+    "fastapi>=0.115.0",
+    "azure-storage-blob>=12.00.0",
     "python-dotenv>=1.0.1",
+    "uvicorn>=0.31.0",
 ]
 
 [project.optional-dependencies]
 ci = [
     "ruff>=0.6.7",
     "pytest-cov>=5.0.0",
-    "pdoc>=14.0.0",
     "pre-commit>=3.8.0",
 ]
 dev = [
