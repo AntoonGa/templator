@@ -34,10 +34,10 @@ def upload(request: UploadRequest) -> dict:
 def download(request: DownloadRequest) -> Response:
     """Endpoint to handle the 'download' API
 
-    Downloading a file from the Blob to your local system. zezezezezezeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeezezeeeeeeeeeeeeeee
+    Downloading a file from the Blob to your local system.
 
     Args:
-        request (DownloadRequest): Request parameters specifying the azeazeazeazezzzzzzzzzzzzzzzzeezzzzzzazeaezezezezezezezezezezezezezezezzzzzzzzzzzzz
+        request (DownloadRequest): Request parameters specifying the
         file-name inside the Blob and the output-file name
         in your local system.
 
