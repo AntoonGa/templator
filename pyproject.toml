@@ -109,7 +109,7 @@ exclude_also = ["if self.debug:",
 target-version = "py312"
 line-length = 100
 # Exclude a variety of commonly ignored directories.
-exclude = []
+# exclude = []
 
 [tool.ruff.lint.per-file-ignores]
 # Less strict rules for tests files.
@@ -182,8 +182,3 @@ reportOptionalSubscript = false
 reportOptionalMemberAccess = false
 reportIncompatibleMethodOverride = false
 typeCheckingMode = "basic"
-
-[tool.uv]
-dev-dependencies = [
-    "numpy>=2.1.1",
-]
