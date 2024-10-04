@@ -46,7 +46,6 @@ Homepage = "https://github.com/AntoonGa/templator"
 # Pytest options, with coverage reports
 [tool.pytest.ini_options]
 # markers can be used to ignore tests
-markers = "skip_this: skip this test"
 norecursedirs =[".git",
                 "venv",
                 "__pycache__"]
@@ -55,6 +54,11 @@ cache_dir = ".cache/cov/"
 # Path to test files and standard tests file naming
 testpaths = "tests"
 python_files = "tests_*.py"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "io: marks tests as I/O (deselect with '-m \"not io\"')",
+    "costly: marks tests as costly (deselect with '-m \"not costly\"')",
+]
 
 #######################################
 ##            COVERAGE
