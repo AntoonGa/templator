@@ -25,6 +25,10 @@ __pycache__
 # C extensions
 *.so
 
+# Potentially dangerous stuff
+data/
+.data/
+
 # Distribution / packaging
 .Python
 build/

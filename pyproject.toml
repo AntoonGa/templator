@@ -105,14 +105,7 @@ exclude_also = ["if self.debug:",
 # A decent Ruff configuration, fairly strict.
 [tool.ruff]
 target-version = "py312"
-line-length = 100
-# Include a variety of common Python patterns. Include src and tests by default.
-include = [
-    "pyproject.toml",
-    "src/*.py",
-    "src/**/*.py",
-    "tests/*.py",
-    "tests/**/*.py"]
+
 # Exclude a variety of commonly ignored directories.
 exclude = []
 
@@ -187,8 +180,3 @@ reportOptionalSubscript = false
 reportOptionalMemberAccess = false
 reportIncompatibleMethodOverride = false
 typeCheckingMode = "basic"
-
-[tool.uv]
-dev-dependencies = [
-    "numpy>=2.1.1",
-]

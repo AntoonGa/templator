@@ -56,7 +56,9 @@ def setup_logging() -> None:
 
     # Create console handler with colored formatter
     console_handler = logging.StreamHandler()
-    color_formatter = LogFormatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    color_formatter = LogFormatter(
+        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    )
     console_handler.setFormatter(color_formatter)
 
     # Set up logging configuration

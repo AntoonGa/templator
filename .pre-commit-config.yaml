@@ -8,6 +8,17 @@ repos:
             stages: [commit-msg]
             args: []
 
+    # lint and format using ruff
+    -   repo: https://github.com/astral-sh/ruff-pre-commit
+        rev: v0.6.7
+        hooks:
+        -   id: ruff # run the linter
+            args: [--fix]
+            pass_filenames: false
+        -   id: ruff-format # run the formatter
+            args: []
+            pass_filenames: false
+
     # Export requirements when lockfile, requirements.txt or pyproject.toml changes
     -   repo: https://github.com/astral-sh/uv-pre-commit
         # uv version.
@@ -57,12 +68,3 @@ repos:
             exclude: '^docs/'
         -   id: trailing-whitespace
             exclude: '^docs/'
-
-    # lint and format using ruff
-    -   repo: https://github.com/astral-sh/ruff-pre-commit
-        rev: v0.6.7
-        hooks:
-        -   id: ruff # run the linter
-            args: [ --fix, --config=pyproject.toml]
-        -   id: ruff-format # run the formatter
-            args: [ --config=pyproject.toml ]  # explicitly specify the configuration file if needed

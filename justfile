@@ -49,8 +49,7 @@ terraform:
     just venv
     just sync
     just req
-    pre-commit clean
-    pre-commit install
+
 
 
 # git add all and commit with message
