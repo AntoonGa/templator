@@ -27,7 +27,7 @@ class AzureBlobManager:
         if self.container_client:
             return
         blob_service_client = BlobServiceClient.from_connection_string(
-            self.settings.AZURE_STORAGE_CONNECTION_STRING
+            self.settings.AZURE_STORAGE_CONNECTION_STRING,
         )
 
         self.container_client = blob_service_client.get_container_client(
@@ -42,15 +42,26 @@ class AzureBlobManager:
     def _close_connection(self) -> None:
         """Close connection"""
         self.container_client.close()
-        msg = f"Disconnected from {self.settings.AZURE_STORAGE_CONTAINER_NAME} container"
+        msg = (
+            f"Disconnected from {self.settings.AZURE_STORAGE_CONTAINER_NAME} container"
+        )
         self.logger.info(msg)
 
-    def upload_file(self, file_name: str, file_data: bytes, overwrite: bool = True) -> None:
+    def upload_file(
+        self,
+        file_name: str,
+        file_data: bytes,
+        overwrite: bool = True,
+    ) -> None:
         """Upload file to azure storage"""
         self._connect_to_blob()
         log_string = f"Upload {file_name}"
         self.logger.info(log_string)
-        self.container_client.upload_blob(name=file_name, data=file_data, overwrite=overwrite)
+        self.container_client.upload_blob(
+            name=file_name,
+            data=file_data,
+            overwrite=overwrite,
+        )
         msg = f"Uploaded {file_name} to {self.settings.AZURE_STORAGE_CONTAINER_NAME} container"
         self.logger.info(msg)
 

@@ -8,7 +8,11 @@ The core logic of the API is found in the 'business' module.
 
 from fastapi import APIRouter, Response
 
-from fastblob.api.blob_manager.business import download_business, list_business, upload_business
+from fastblob.api.blob_manager.business import (
+    download_business,
+    list_business,
+    upload_business,
+)
 from fastblob.api.schemas.schemas import DownloadRequest, UploadRequest
 
 router = APIRouter(prefix="/blobmanager")

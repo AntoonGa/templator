@@ -73,10 +73,14 @@ class Settings(metaclass=SingletonMeta):
     def __post_init__(self) -> None:
         """After init, read the env variable and assign it to the object"""
         load_dotenv(self._public_dot_env_path)
-        load_dotenv(self._secrets_dot_env_path)  #  public settings are overwritten by secrets
+        load_dotenv(
+            self._secrets_dot_env_path,
+        )  #  public settings are overwritten by secrets
 
         self.AZURE_STORAGE_CONTAINER_NAME = os.getenv("AZURE_STORAGE_CONTAINER_NAME")
-        self.AZURE_STORAGE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+        self.AZURE_STORAGE_CONNECTION_STRING = os.getenv(
+            "AZURE_STORAGE_CONNECTION_STRING",
+        )
 
 
 if __name__ == "__main__":

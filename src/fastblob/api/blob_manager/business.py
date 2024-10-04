@@ -65,7 +65,11 @@ def download_business(request: DownloadRequest) -> Response:
     }
     logger.info("File downloaded successfully")
     logger.info(data)
-    return Response(content=data, headers=headers, media_type="application/octet-stream")
+    return Response(
+        content=data,
+        headers=headers,
+        media_type="application/octet-stream",
+    )
 
 
 def list_business() -> ListResponse:

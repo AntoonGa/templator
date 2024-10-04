@@ -107,7 +107,7 @@ exclude_also = ["if self.debug:",
 # A decent Ruff configuration, fairly strict.
 [tool.ruff]
 target-version = "py312"
-line-length = 100
+# line-length = 100
 # Exclude a variety of commonly ignored directories.
 # exclude = []
 
@@ -119,7 +119,7 @@ line-length = 100
 ]
 
 [tool.ruff.lint]
-# All rules are listed here : https://docs.astral.sh/ruff/rules/#pyflakes-f
+# All rules are listed here : https://docs.astral.sh/ruff/rules
 select = ["ALL"]
 ignore = [
     # DISABLED: (generally accepted as bad rules)
