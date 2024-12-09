@@ -5,8 +5,8 @@ You should access env variable from this object only rather than do get.env().
 
 How to use:
 - add env variables to your secrets.env or public.env
-- secrets.env should never be commited/pushed to git (contains secrets)
-- public.env should be commited/pushed to git
+- secrets.env should never be committed/pushed to git (contains secrets)
+- public.env should be committed/pushed to git
 - in this class, add the env variable and assign it to the object
 - after loading in post init, Settings will read the env variable and assign it to the object
 
@@ -78,12 +78,12 @@ class Settings(metaclass=SingletonMeta):
         load_dotenv(self._secrets_dot_env_path)
         load_dotenv(self._public_dot_env_path)
 
-        self._set_if_notnone("PRIVATE_VAR_INT", os.getenv("PRIVATE_VAR_INT"))
-        self._set_if_notnone("PRIVATE_VAR_STR", os.getenv("PRIVATE_VAR_STR"))
-        self._set_if_notnone("PUBLIC_VAR_INT", os.getenv("PUBLIC_VAR_INT"))
-        self._set_if_notnone("PUBLIC_VAR_STR", os.getenv("PUBLIC_VAR_STR"))
+        self._set_if_not_none("PRIVATE_VAR_INT", os.getenv("PRIVATE_VAR_INT"))
+        self._set_if_not_none("PRIVATE_VAR_STR", os.getenv("PRIVATE_VAR_STR"))
+        self._set_if_not_none("PUBLIC_VAR_INT", os.getenv("PUBLIC_VAR_INT"))
+        self._set_if_not_none("PUBLIC_VAR_STR", os.getenv("PUBLIC_VAR_STR"))
 
-    def _set_if_notnone(self, key: str, value: Any) -> None:  # noqa: ANN401
+    def _set_if_not_none(self, key: str, value: Any) -> None:  # noqa: ANN401
         """Assign value to key if it is not None."""
         if value is not None:
             setattr(self, key, value)
