@@ -11,9 +11,10 @@ from templator.module.foo import foo
 logger = logging.getLogger("EntryPoint")
 
 
-def main() -> None:
+def main(arr: list[int] | None = None) -> None:
     """User entry point for the package"""
-    arr = list(range(10))
+    if not arr:
+        arr = list(range(10))
     arr_out = foo(arr)
     logger.info(arr_out)
 
