@@ -1,5 +1,5 @@
 # type: ignore
-set shell := ["powershell", "-c"]
+# set shell := ["powershell", "-c"]
 
 # list all available just commands
 [group('helpers')]
