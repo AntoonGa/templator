@@ -4,10 +4,6 @@ asttokens==2.4.1
     # via stack-data
 cfgv==3.4.0
     # via pre-commit
-colorama==0.4.6
-    # via
-    #   ipython
-    #   pytest
 comm==0.2.2
     # via ipykernel
 coverage==7.6.1
@@ -62,6 +58,8 @@ parso==0.8.4
     # via jedi
 pdoc==14.7.0
     # via templator (pyproject.toml)
+pexpect==4.9.0
+    # via ipython
 platformdirs==4.3.6
     # via
     #   jupyter-core
@@ -74,6 +72,8 @@ prompt-toolkit==3.0.48
     # via ipython
 psutil==6.0.0
     # via ipykernel
+ptyprocess==0.7.0
+    # via pexpect
 pure-eval==0.2.3
     # via stack-data
 pygments==2.18.0
@@ -88,8 +88,6 @@ python-dateutil==2.9.0.post0
     # via jupyter-client
 python-dotenv==1.0.1
     # via templator (pyproject.toml)
-pywin32==306
-    # via jupyter-core
 pyyaml==6.0.2
     # via pre-commit
 pyzmq==26.2.0

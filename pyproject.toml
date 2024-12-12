@@ -91,7 +91,7 @@ exclude_also = ["if self.debug:",
 #######################################
 # NOTE: Mypy is slow, raises a lot of false positives and is not that interesting anymore.
 # For this reason I suggest you not to use it in production and use pylance locally.
-# Nontheless this config is somewhat acceptable and nice to work with.
+# Nonetheless this config is somewhat acceptable and nice to work with.
 # [tool.mypy]
 # python_version = "3.12"
 # exclude = "tests/"
